@@ -5,15 +5,18 @@ import { SET_ACCOUNT } from './redux/reducer';
 
 
 
-function Home() {
+function Home({setStage,setAccount}) {
+  
   const dispatch = useDispatch()
-
   const [seedphrase, setSeedphrase] = useState('');
+
   const create = ()=>{
     const keys = generateAccount()
     console.log(keys)
-    localStorage.setItem("phrase",keys.seedPhrase)
-    dispatch(SET_ACCOUNT(keys))
+    setAccount(keys)
+    setStage(1)
+    // localStorage.setItem("phrase",keys.seedPhrase)
+    // dispatch(SET_ACCOUNT(keys))
   }
   
   const importWallet = ()=>{
