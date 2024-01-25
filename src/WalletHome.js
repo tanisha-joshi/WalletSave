@@ -1,13 +1,76 @@
 import React from 'react'
-
+import {useState} from 'react'
+import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { BiSolidUserAccount } from "react-icons/bi";
+import { RiSendPlaneFill } from "react-icons/ri";
 function WalletHome() {
+    const WalletAddressDisplay = ({ address }) => {
+        const [isCopied, setIsCopied] = useState(false);
+      
+        const handleCopyClick = () => {
+          // Create a temporary input element to copy the text to clipboard
+          const tempInput = document.createElement('input');
+          tempInput.value = address;
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          document.body.removeChild(tempInput);
+      
+          // Set the copied state to true and reset after a short delay
+          setIsCopied(true);
+          setTimeout(() => setIsCopied(false), 1500);
+        };
+      
+        return (
+          <div
+            style={{
+              cursor: 'pointer',
+              border: '1px solid #ccc',
+              padding: '5px',
+              borderRadius: '5px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              maxWidth: '200px',
+            }}
+            onClick={handleCopyClick}
+          >
+            {isCopied ? 'Address Copied!' : `${address.substring(0, 12)}...${address.substring(address.length - 8)}`}
+          </div>
+        );
+      };
+      
   return (
     <div className="w-full h-full bg-cyan-900 flex flex-col items-center">
-        <div className="w-full h-20 bg-slate-900 shadow-2xl rounded-b-sm shadow-slate-700 flex flex-row items-center justify-around">
-            <div className="text-slate-500 font-bold text-xl">Account1</div>
+        <div className="w-full h-20 bg-slate-900 mix-blend-darken shadow-2xl rounded-b-sm shadow-slate-700 flex flex-row items-center p-1">
+            <div className="dropdown dropdown-hover">
+            <div tabIndex={0} role="button" className="btn m-1 bg-slate-900 border-none"><IoIosArrowDropdownCircle className="w-7 h-7" /></div>
+                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                        <li className="h-11 text-slate-300">Select a network</li>
+                        <li><a>Ethereum Mainnet</a></li>
+                        <li><a>Sepolia</a></li>
+                    </ul>
+            </div>
+            <BiSolidUserAccount className="ml-12 w-6 h-6"/>
+            <div className="text-slate-300 font-bold text-xl ml-3">Account1</div>
         </div>
-        <div className="bg-slate-900 text-xsm font-xsm mt-8 w-44 h-9 rounded-l-3xl rounded-r-3xl pt-2 font-medium pb-1 pl-2 pr-2 overflow-clip text-center align-middle">0x063c849623f7113776a7D2e173A6cac2930f96c9</div>
-    </div>
+        <div className="mt-8">
+        <WalletAddressDisplay className="" address="0x063c849623f7113776a7D2e173A6cac2930f96c9" />
+        </div>
+        <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-400">0.0345 SepoliaETH</div>
+        <div className="mt-2 text-xl tracking-wide shadow-2xl text-slate-500">$0.00 USD</div>
+        <div className="flex flex-row p-3 h-11 w-full mt-7"><RiSendPlaneFill className="text-gray-900 w-9 h-9" /></div>
+        <div role="tablist" className="tabs tabs-bordered mt-4 items-center">
+            <input type="radio" name="my_tabs_1" role="tab" className="tab tracking-wide" aria-label="Tokens" />
+            <div role="tabpanel" className="tab-content p-10">Tokens</div>
+
+            <input type="radio" name="my_tabs_1" role="tab" className="tab tracking-wide" aria-label="NFTs" checked />
+            <div role="tabpanel" className="tab-content p-10">NFTs</div>
+
+            <input type="radio" name="my_tabs_1" role="tab" className="tab tracking-wide" aria-label="Activity" />
+            <div role="tabpanel" className="tab-content p-10">Activity</div>
+        </div>
+        </div>
   )
 }
 
