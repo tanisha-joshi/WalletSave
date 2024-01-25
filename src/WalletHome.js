@@ -1,6 +1,8 @@
 import React from 'react'
 import {useState} from 'react'
 import { IoIosArrowDropdownCircle } from "react-icons/io";
+import { BiSolidUserAccount } from "react-icons/bi";
+import { RiSendPlaneFill } from "react-icons/ri";
 function WalletHome() {
     const WalletAddressDisplay = ({ address }) => {
         const [isCopied, setIsCopied] = useState(false);
@@ -49,13 +51,26 @@ function WalletHome() {
                         <li><a>Sepolia</a></li>
                     </ul>
             </div>
-            <div className="text-slate-300 font-bold text-xl ml-14">Account1</div>
+            <BiSolidUserAccount className="ml-12 w-6 h-6"/>
+            <div className="text-slate-300 font-bold text-xl ml-3">Account1</div>
         </div>
         <div className="mt-8">
         <WalletAddressDisplay className="" address="0x063c849623f7113776a7D2e173A6cac2930f96c9" />
         </div>
         <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-400">0.0345 SepoliaETH</div>
-    </div>
+        <div className="mt-2 text-xl tracking-wide shadow-2xl text-slate-500">$0.00 USD</div>
+        <div className="flex flex-row p-3 h-11 w-full mt-7"><RiSendPlaneFill className="text-gray-900 w-9 h-9" /></div>
+        <div role="tablist" className="tabs tabs-bordered mt-4 items-center">
+            <input type="radio" name="my_tabs_1" role="tab" className="tab tracking-wide" aria-label="Tokens" />
+            <div role="tabpanel" className="tab-content p-10">Tokens</div>
+
+            <input type="radio" name="my_tabs_1" role="tab" className="tab tracking-wide" aria-label="NFTs" checked />
+            <div role="tabpanel" className="tab-content p-10">NFTs</div>
+
+            <input type="radio" name="my_tabs_1" role="tab" className="tab tracking-wide" aria-label="Activity" />
+            <div role="tabpanel" className="tab-content p-10">Activity</div>
+        </div>
+        </div>
   )
 }
 

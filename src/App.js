@@ -7,7 +7,7 @@ import Finish from './Finish';
 function App() {
   return (
     <div className="App h-500 bg-white">
-      {/* <WalletHome /> */}
+      <WalletHome />
       {/* <Home /> */}
       {/* <CreateWallet seedphrase={"palm shiver eager merge solve hard master foot produce bulb zebra hockey"} /> */}
       {/* <Finish address= {"0x5A0dFfe964188E62C1acc3C6a032D9cC57B1CfC9"} /> */}
