@@ -1,19 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { generateAccount } from './utils/accountUtils';
+import { useDispatch } from 'react-redux';
+import { SET_ACCOUNT } from './redux/reducer';
 
 
 
 function Home() {
+  const dispatch = useDispatch()
+
   const [seedphrase, setSeedphrase] = useState('');
   const create = ()=>{
     const keys = generateAccount()
     console.log(keys)
+    localStorage.setItem("phrase",keys.seedPhrase)
+    dispatch(SET_ACCOUNT(keys))
   }
   
   const importWallet = ()=>{
   
     const keys = generateAccount(seedphrase)
     console.log(keys)
+    localStorage.setItem("phrase",seedphrase)
+    dispatch(SET_ACCOUNT(keys))
+
+
   }
 
 
