@@ -8,7 +8,9 @@ import { SET_ACCOUNT, selectAccount, selectChain } from './redux/reducer';
 import { useEffect } from 'react';
 import { generateAccount } from './utils/accountUtils';
 import Onboard from './Onboard';
-
+import SendHome from './SendHome'
+import Amount from './Amount';
+import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 
 function App() {
 
@@ -30,13 +32,16 @@ function App() {
   )
   return (
 
-
+    <Router>
     <div className="App h-500 bg-white">
-    {  !account && <Onboard/>}
-     {account && <WalletHome />}
-      {/* <CreateWallet seedphrase={"palm shiver eager merge solve hard master foot produce bulb zebra hockey"} />
-      <Finish address= {"0x5A0dFfe964188E62C1acc3C6a032D9cC57B1CfC9"} /> */}
+      <Routes>
+          {!account && <Route path="/" element={<Onboard/>} />}
+          {account && <Route path="/" element={<WalletHome/>} />}
+           <Route path="/sendHome" element={<SendHome />} />
+          <Route path="/amount" element={<Amount />} />
+      </Routes>
     </div>
+    </Router>
 
 
   );

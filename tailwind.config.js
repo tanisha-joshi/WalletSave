@@ -8,7 +8,8 @@ module.exports = {
       },
       fontSize:{
         "xsm":"12px"
-      }
+      },
+      
     },
   },
   plugins: [require("daisyui")],
