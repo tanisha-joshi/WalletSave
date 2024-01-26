@@ -8,6 +8,10 @@
     "action":{
         "default_popup": "public/index.html"
     } ,
+    "icons": {
+        "48": "logoicon.png",
+        "128": "logoicon.png"
+      },
     "background": {
         "service_worker" : "src/background/index.js",
         "type": "module"

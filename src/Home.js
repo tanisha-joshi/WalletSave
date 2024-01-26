@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { generateAccount } from './utils/accountUtils';
 import { useDispatch } from 'react-redux';
 import { SET_ACCOUNT } from './redux/reducer';
+import { FaGoogleWallet } from "react-icons/fa";
 
 
 
@@ -36,8 +37,9 @@ function Home({setStage,setAccount}) {
   }
 
   return (
-    <div className="  h-full overflow-hidden bg-cyan-900 text-white flex flex-col text-center items-center">
-        <div className="font-extrabold tracking-wider mt-48 text-3xl ">Welcome!</div>
+    <div className="w-full  h-full overflow-hidden bg-cyan-900 text-white flex flex-col text-center items-center">
+        <FaGoogleWallet className=" w-20 h-20 text-black mt-32"/>
+        <div className="font-extrabold tracking-wider text-3xl mt-3 ">Welcome!</div>
         <div className="font-medium text-white mt-2">The decentralised web awaits</div>
         {/* <input type="text" placeholder="Enter your password" className="input input-bordered input-info w-full max-w-xs mt-10 border-none text-center" /> */}
         {/* <div className="text-xs mt-5"><div className="font-bold mb-3">YOUR ADDRESS:</div>0x063c849623f7113776a7D2e173A6cac2930f96c9</div> */}

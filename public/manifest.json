@@ -2,13 +2,17 @@
     "manifest_version": 3,
     "name": "Wallet-Save",
     "version": "1.0.0",
-    "description": "A basic example extension with only required keys",
+    "description": "Let your Wallet Save For You",
     "action": {
       "default_popup": "index.html"
     },
     "background": {
       "service_worker": "background.js",
       "type": "module"
+    },
+    "icons": {
+      "48": "logoicon.png",
+      "128": "logoicon.png"
     },
     "permissions":[
       "alarms"
