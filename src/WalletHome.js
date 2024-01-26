@@ -2,7 +2,11 @@ import React from 'react'
 import {useState} from 'react'
 import { RiSendPlaneFill } from "react-icons/ri";
 import Navbar from './Navbar';
+// import { getMyAddress, startSave } from './utils/transactionUtils';
+import { useSelector } from 'react-redux';
+import { selectAccount } from './redux/reducer';
 function WalletHome() {
+  const account = useSelector(selectAccount)
     const WalletAddressDisplay = ({ address }) => {
         const [isCopied, setIsCopied] = useState(false);
       
