@@ -2,7 +2,12 @@ import React from 'react'
 import {useState} from 'react'
 import { RiSendPlaneFill } from "react-icons/ri";
 import Navbar from './Navbar';
+import {  useSelector } from 'react-redux';
+import { selectAccount } from './redux/reducer';
+import SavingsOn from './components/SavingsOn';
 function WalletHome() {
+    const account = useSelector(selectAccount)
+   
     const WalletAddressDisplay = ({ address }) => {
         const [isCopied, setIsCopied] = useState(false);
       
@@ -42,10 +47,11 @@ function WalletHome() {
   return (
     <div className="w-full h-full bg-cyan-900 flex flex-col items-center">
         <Navbar/>
+        <SavingsOn/>
         <div className="mt-8">
-        <WalletAddressDisplay className="" address="0x063c849623f7113776a7D2e173A6cac2930f96c9" />
+        <WalletAddressDisplay className="" address={account.address} />
         </div>
-        <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-400">0.0345 SepoliaETH</div>
+        <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-400">{account.balance} SepoliaETH</div>
         <div className="mt-2 text-xl tracking-wide shadow-2xl text-slate-500">$0.00 USD</div>
         <div className="flex flex-row p-3 h-11 w-full mt-7"><RiSendPlaneFill className="text-gray-900 w-9 h-9" /></div>
         <div role="tablist" className="tabs tabs-bordered mt-4 items-center">

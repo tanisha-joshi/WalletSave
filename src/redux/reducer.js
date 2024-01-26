@@ -3,7 +3,8 @@ import { CHAINS_CONFIG,goerli,mainnet } from "../utils/Chains";
 const initialState = {
     chain :CHAINS_CONFIG[goerli.chainId],
     account:null,
-    seedPhrase:""
+    seedPhrase:"",
+    isSaving:false,
 }
 
 
@@ -25,6 +26,11 @@ export const Slice = createSlice({
                 ...action.payload
             }
 
+        },
+        SET_SAVING:(state,action)=>{
+            console.log(action.payload)
+            state.isSaving= !state.isSaving
+            
         }
 
 
@@ -38,9 +44,9 @@ export const Slice = createSlice({
 
 
 
- export const {SET_ACCOUNT,SET_CHAIN} = Slice.actions
+ export const {SET_ACCOUNT,SET_CHAIN,SET_SAVING} = Slice.actions
  export const selectAccount = (state)=>state.data.account
  export const selectChain= (state)=>state.data.chain
  export const selectPhrase= (state)=>state.data.seedPhrase
-
+ export const selectSavings = (state)=>state.data.isSaving
  export default Slice.reducer

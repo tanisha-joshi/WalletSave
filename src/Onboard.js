@@ -19,6 +19,7 @@ function Onboard() {
     {stage === 0 && <Home setStage={setStage} setAccount={setAccount}/>}
     {stage === 1 && <CreateWallet seedphrase={account?.seedPhrase} setStage={setStage}/>}
     {stage === 2 && <Finish account={account} />}
+    
     </div>
 
   )
