@@ -35,20 +35,11 @@ function App() {
     <Router>
     <div className="App h-500 bg-white">
       <Routes>
-          {/* <Route path="/chatPage" element = {<ChatPage  socket={socket} />} />
-          <Route path="/chat" element = {<Chat socket={socket} user={user} />} /> */}
           {!account && <Route path="/" element={<Onboard/>} />}
           {account && <Route path="/" element={<WalletHome/>} />}
            <Route path="/sendHome" element={<SendHome />} />
           <Route path="/amount" element={<Amount />} />
       </Routes>
-      {/* <SendHome /> */}
-      {/* <WalletHome/> */}
-      {/* <Amount /> */}
-    {/* {  !account && <Onboard/>}
-     {account && <WalletHome />} */}
-      {/* <CreateWallet seedphrase={"palm shiver eager merge solve hard master foot produce bulb zebra hockey"} />
-      <Finish address= {"0x5A0dFfe964188E62C1acc3C6a032D9cC57B1CfC9"} /> */}
     </div>
     </Router>
 
