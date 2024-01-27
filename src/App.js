@@ -10,7 +10,7 @@ import { generateAccount } from './utils/accountUtils';
 import Onboard from './Onboard';
 import SendHome from './SendHome'
 import Amount from './Amount';
-import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
+import {HashRouter as Router,Routes,Route} from 'react-router-dom'
 import Savings from './SavingsPage'
 
 function App() {
@@ -35,6 +35,7 @@ function App() {
 
     <Router>
     <div className="App h-500 bg-white">
+    {/* <Amount/> */}
       <Routes>
           {!account && <Route path="/" element={<Onboard/>} />}
           {account && <Route path="/" element={<WalletHome/>} />}
