@@ -5,6 +5,7 @@ const initialState = {
     account:null,
     seedPhrase:"",
     isSaving:false,
+    savingsAccount:null
 }
 
 
@@ -31,6 +32,13 @@ export const Slice = createSlice({
             console.log(action.payload)
             state.isSaving= !state.isSaving
             
+        },
+        SET_SAVINGS_ACCOUNT :(state,action)=>{
+            return {
+                ...state,
+                ...action.payload
+            }
+
         }
 
 
