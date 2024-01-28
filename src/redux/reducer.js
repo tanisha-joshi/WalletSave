@@ -4,7 +4,7 @@ const initialState = {
     chain :CHAINS_CONFIG[goerli.chainId],
     account:null,
     seedPhrase:"",
-    isSaving:false,
+    isSaving:null,
     savingsAccount:null
 }
 
@@ -30,7 +30,7 @@ export const Slice = createSlice({
         },
         SET_SAVING:(state,action)=>{
             console.log(action.payload)
-            state.isSaving= !state.isSaving
+            state.isSaving= action.payload
             
         },
         SET_SAVINGS_ACCOUNT :(state,action)=>{

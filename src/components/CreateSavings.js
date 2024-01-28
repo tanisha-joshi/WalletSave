@@ -17,7 +17,7 @@ const CreateSavings = () => {
   
     const handleCreate = async ()=>{
       setIsLoading(true)
-      await delay(1000)
+      
       if(account){
         
         const savingAddress=getMyAddress(account.privateKey)
@@ -30,18 +30,19 @@ const CreateSavings = () => {
          {
            dispatch(SET_SAVING(true))
            console.log("account created successfully")
+           setIsLoading(false)
          }
           }
          ).catch(
            (error)=>{
             console.log(error)
             alert(error)
-
+            setIsLoading(false)
            }
          )
          
          
-         setIsLoading(false)
+        
         }
         
         
@@ -51,7 +52,7 @@ const CreateSavings = () => {
 
     
   return (
-    <div style={{background: 'var(--Greyscale-Grey-80, #1C1C23)'}} className="h-full">
+    <div style={{background: 'var(--Greyscale-Grey-80, #1C1C23)'}} className="h-screen">
         <Navbar />
         <div className="">
           <img

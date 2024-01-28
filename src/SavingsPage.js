@@ -11,8 +11,8 @@ const SavingsPage = () => {
   
   return (
     <>
-    {isSaving&&  <CreateSavings/>}
-    {!isSaving && <SavingPageInfo/> }
+    {!isSaving&&  <CreateSavings/>}
+    {isSaving && <SavingPageInfo/> }
     </>
   );
 };

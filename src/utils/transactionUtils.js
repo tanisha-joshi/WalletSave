@@ -60,7 +60,7 @@ export async function getMyAddress(privateKey){
 
 const res2 = await contract.getMySavingContract()
 console.log("res2",res2)
-
+ return res2
 
 }
 
@@ -133,7 +133,8 @@ export async function getMyBalance(privateKey){
 
 
 const res2 = await contract.getMyBalance()
-console.log("res2",res2)
 
+console.log("res2",res2)
+return res2
 
 }

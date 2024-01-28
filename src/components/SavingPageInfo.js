@@ -46,13 +46,26 @@ const WalletAddressDisplay = ({ address }) => {
 };
 const SavingPageInfo = () => {
   const account = useSelector(selectAccount);
+  const [savingAddress,setSavingAddress]=useState("")
+  const [balance,setBalance]=useState(0)
   const isSaving = useSelector(selectSavings);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    if (isSaving) {
-      const savingAddress = getMyAddress(account.privateKey);
-      const savingsBalance = getMyBalance(account.privateKey);
+    const getAccountInfo = async ()=>{
+      
+      if (isSaving) {
+        setLoading(true)
+        const saving = await getMyAddress(account.privateKey);
+        
+        const savingsBalance = await getMyBalance(account.privateKey);
+        console.log("account",savingsBalance)
+        setSavingAddress(saving)
+        setBalance(savingsBalance)
+        setLoading(false) 
+      }
+      
     }
+    getAccountInfo()
   }, []);
   return (
     <>
@@ -76,14 +89,14 @@ const SavingPageInfo = () => {
         >
           <div className="p-3 rounded-lg  bg-blue-600  w-[90%] mt-6">
             <div className="justify-center flex w-full">
-              <WalletAddressDisplay className="" address={"0x0"} />
+              <WalletAddressDisplay className="" address={savingAddress} />
             </div>
             <div></div>
             <div className="mt-9 font-bold  text-xl text-start tracking-wider shadow-2xl text-slate-200">
               Total Savings
             </div>
             <div className="mt-2 text-xl tracking-wide shadow-2xl text-slate-400">
-              $0.00 USD
+              $ {balance||0} USD
             </div>
           </div>
 

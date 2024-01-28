@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RiSendPlaneFill } from "react-icons/ri";
 import Navbar from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { selectAccount, SET_SAVING } from "./redux/reducer";
+import { selectAccount, selectSavings, SET_SAVING } from "./redux/reducer";
 import SavingsOn from "./components/SavingsOn";
 import { useNavigate } from "react-router-dom";
 import { UseDispatch } from "react-redux";
@@ -17,29 +17,8 @@ function WalletHome() {
   const renderChat = () => {
     navigate("/sendHome");
   };
-  function isValidEthAddress(address) {
-    if (!/^(0x)?[0-9a-fA-F]{40}$/.test(address)) {
-      // Check if it has the right length and consists of valid hexadecimal characters
-      return false;
-    } else if (/^(0x)?[0]{40}$|^(0x)?[fF]{40}$/.test(address)) {
-      // Check if the address is not an empty or all-zero address
-      return false;
-    } else {
-      return true;
-    }
-  }
-  useEffect(() => {
-    if (account) {
-      const savingAddress = getMyAddress(account.privateKey);
-      if (isValidEthAddress(savingAddress)) {
-        dispatch(SET_SAVING(true));
-        console.log("correct");
-      } else {
-        dispatch(SET_SAVING(false));
-        console.log("incorrect");
-      }
-    }
-  }, []);
+  const isSaving= useSelector(selectSavings)
+ 
   const WalletAddressDisplay = ({ address }) => {
     const [isCopied, setIsCopied] = useState(false);
 
