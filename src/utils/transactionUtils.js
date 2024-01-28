@@ -113,8 +113,10 @@ export async function withdraw(privateKey, amount) {
     const receipt = await tx.wait();
 
     console.log('Transaction Receipt:', receipt);
+    return receipt
   } catch (error) {
     console.error('Error withdrawing from account:', error);
+    return error
   }
 }
 

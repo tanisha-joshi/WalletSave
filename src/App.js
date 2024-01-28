@@ -41,14 +41,14 @@ function App() {
         const keys = generateAccount(phrase)
         dispatch(SET_ACCOUNT(keys))
       } 
-      const getSavingAddress= async ()=>{
+      const getSavingAddress= async ()=>{  
         if (account ) {
           const savingAddress = await getMyAddress(account.privateKey);
           console.log('address',savingAddress)
           if (isValidEthAddress(savingAddress)) {
              dispatch(SET_SAVING(true))
              
-            
+               
           } else {
             dispatch(SET_SAVING(false));  
            

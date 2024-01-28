@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getMyAddress, getMyBalance } from "../utils/transactionUtils";
 import { UseSelector, useSelector } from "react-redux";
 import { selectAccount, selectSavings } from "../redux/reducer";
-import withdraw from '../assets/withdraw-money-6376.svg'
-
+import withdrawSvg from '../assets/withdraw-money-6376.svg'
+import { withdraw } from "../utils/transactionUtils";
 import Navbar from "../Navbar";
 
 const WalletAddressDisplay = ({ address }) => {
   const [isCopied, setIsCopied] = useState(false);
-
+  
   const handleCopyClick = () => {
     // Create a temporary input element to copy the text to clipboard
     const tempInput = document.createElement("input");
@@ -22,7 +22,7 @@ const WalletAddressDisplay = ({ address }) => {
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 1500);
   };
-
+  
   return (
     <div
       style={{
@@ -50,14 +50,34 @@ const SavingPageInfo = () => {
   const [savingAddress,setSavingAddress]=useState("")
   const [balance,setBalance]=useState(0)
   const isSaving = useSelector(selectSavings);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false); 
+   const [withdrawLoading,setWithdrawLoading]=useState(false)
+  const [withdrawBalance,setWithdrawBalance]=useState(0)
+  const handleWithdraw=()=>{
+    
+    setWithdrawLoading(true)
+    setLoading(true)
+    if(withdrawBalance){
+
+      withdraw(account.privateKey,withdrawBalance).then((result)=>{
+        
+        console.log("Amount Withdrawn Successfully",result)
+        setLoading(false)
+        setWithdrawLoading(false)
+      }).catch((error)=>{
+        console.log("error",error)
+         alert(error)
+         setLoading(false)
+         setWithdrawLoading(false)
+      })
+    }
+  }
   useEffect(() => {
     const getAccountInfo = async ()=>{
       
       if (isSaving) {
         setLoading(true)
         const saving = await getMyAddress(account.privateKey);
-        
         const savingsBalance = await getMyBalance(account.privateKey);
         console.log("account",savingsBalance)
         setSavingAddress(saving)
@@ -77,11 +97,12 @@ const SavingPageInfo = () => {
           className="relative h-full"
         >
           <div className="absolute left-[30%] top-[40%] flex justify-center items-center flex-col ">
-            <div className="">Fetching details...</div>
+            { <div className="">{withdrawLoading?"Processing Withdrawl....":"Fetching details..."}</div>}
             <span className="bg-yellow-200 loading loading-infinity w-[4rem]"></span>
           </div>
         </div>
       )}
+      
 
       {!loading && (
         <div
@@ -101,15 +122,30 @@ const SavingPageInfo = () => {
             </div>
           </div>
           <hr class="w-[90%] h-1 mx-3 my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
-          <div className="flex  gap-6 align-middle">
+           
+            {
+              !withdrawLoading &&
+              <div>
             <div>
            <div className=" w-full mt-3 flex justify-start gap-x-4">
-            <div className="text-white text-3xl ">Withdraw</div>
-            <img src={withdraw} width={40} height={40}/>
+            <div className="text-white text-3xl font-bold ">Withdraw</div>
+            <img src={withdrawSvg} width={40} height={40}/>
            </div>
             </div>
+            <div>
+            <div className="mt-8 text-lg font-bold">Amount</div>
+            <div className=" flex align-middle mt-5 items-center justify-between gap-6">
+            <input onChange={(e)=>{setWithdrawBalance(e.target.value)}}  type="text" placeholder="$15" className="input input-bordered input-accent  w-xs" />
+           
+            <button onClick={handleWithdraw} className="btn btn-primary ">Withdraw</button>
+            
+            </div>
+            
+            </div>
+            </div>
+            }
               
-          </div> 
+          
         </div>
       )}
     </>
