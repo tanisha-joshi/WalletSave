@@ -101,7 +101,7 @@ export async function withdraw(privateKey, amount) {
   const provider = new ethers.JsonRpcProvider(chain.rpcUrl);
   const wallet = new ethers.Wallet(privateKey, provider);
   const contract = new ethers.Contract(contractAddress, abi, wallet);
-
+  
   try {
     // Convert the amount to a BigNumber and provide the value parameter
     const amountInWei = ethers.parseUnits(amount.toString(), 18);

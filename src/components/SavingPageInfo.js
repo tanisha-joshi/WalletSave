@@ -62,6 +62,7 @@ const SavingPageInfo = () => {
       withdraw(account.privateKey,withdrawBalance).then((result)=>{
         
         console.log("Amount Withdrawn Successfully",result)
+        
         setLoading(false)
         setWithdrawLoading(false)
       }).catch((error)=>{
@@ -74,10 +75,9 @@ const SavingPageInfo = () => {
   }
   useEffect(() => {
     const getAccountInfo = async ()=>{
-      
-      if (isSaving) {
-        setLoading(true)
-        const saving = await getMyAddress(account.privateKey);
+      setLoading(true)
+      const saving = await getMyAddress(account.privateKey);
+      if (isSaving && saving ) {
         const savingsBalance = await getMyBalance(account.privateKey);
         console.log("account",savingsBalance)
         setSavingAddress(saving)
