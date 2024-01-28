@@ -5,7 +5,9 @@ const initialState = {
     account:null,
     seedPhrase:"",
     isSaving:null,
-    savingsAccount:null
+    savingsAccount:null,
+    savingAddress:null
+
 }
 
 
@@ -40,8 +42,15 @@ export const Slice = createSlice({
             }
 
         }
+,
+        SET_SAVING_ADDRESS:(state,action)=>{
+            return{
+                ...state,
+                ...action.payload
 
+            }
 
+        }
 
 
     }
@@ -52,9 +61,11 @@ export const Slice = createSlice({
 
 
 
- export const {SET_ACCOUNT,SET_CHAIN,SET_SAVING} = Slice.actions
+ export const {SET_ACCOUNT,SET_CHAIN,SET_SAVING,SET_SAVING_ADDRESS} = Slice.actions
  export const selectAccount = (state)=>state.data.account
  export const selectChain= (state)=>state.data.chain
  export const selectPhrase= (state)=>state.data.seedPhrase
  export const selectSavings = (state)=>state.data.isSaving
+ export const selectSavingAddress = (state)=>state.data.savingAddress
+
  export default Slice.reducer

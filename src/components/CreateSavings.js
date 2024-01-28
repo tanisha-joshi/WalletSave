@@ -52,7 +52,7 @@ const CreateSavings = () => {
 
     
   return (
-    <div style={{background: 'var(--Greyscale-Grey-80, #1C1C23)'}} className="h-screen">
+    <div style={{background: 'var(--Greyscale-Grey-80, #1C1C23)'}} className="">
         <Navbar />
         <div className="">
           <img
