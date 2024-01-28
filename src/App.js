@@ -4,7 +4,7 @@ import CreateWallet from './CreateWallet';
 import WalletHome from './WalletHome';
 import Finish from './Finish';
 import {  useDispatch, useSelector } from "react-redux";
-import { SET_ACCOUNT, selectAccount, selectChain,SET_SAVING } from './redux/reducer';
+import { SET_ACCOUNT, selectAccount, selectChain,SET_SAVING, SET_SAVING_ADDRESS } from './redux/reducer';
 import { useEffect } from 'react';
 import { generateAccount } from './utils/accountUtils';
 import Onboard from './Onboard';
@@ -41,23 +41,30 @@ function App() {
         const keys = generateAccount(phrase)
         dispatch(SET_ACCOUNT(keys))
       } 
-      const getSavingAddress= async ()=>{
-        if (account ) {
-          const savingAddress = await getMyAddress(account.privateKey);
-          console.log('address',savingAddress)
-          if (isValidEthAddress(savingAddress)) {
-             dispatch(SET_SAVING(true))
-             
-            
-          } else {
-            dispatch(SET_SAVING(false));  
-           
-          }
-        }
-      }
-      getSavingAddress()
+
     },[]
   )
+
+  useEffect(()=>{
+    const getSavingAddress= async ()=>{
+      if (account ) {
+        const savingAddress = await getMyAddress(account.privateKey);
+        console.log('address',savingAddress)
+        if (isValidEthAddress(savingAddress)) {
+           dispatch(SET_SAVING(true))
+           dispatch(SET_SAVING_ADDRESS({savingAddress}))
+           
+          
+        } else {
+          dispatch(SET_SAVING(false));  
+         
+        }
+      }
+    }
+    getSavingAddress()
+
+
+  },[account])
   return (
 
     <Router>

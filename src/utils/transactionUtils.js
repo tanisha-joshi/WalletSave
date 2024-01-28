@@ -6,7 +6,6 @@ import { contractAddress,abi } from '../constants';
 
 export async function sendToken(
   amount,
-  from,
   to,
   privateKey,
 ) {
@@ -47,6 +46,7 @@ export async function startSave(privateKey){
 
 const res1 = await contract.createChildContract()
 console.log("res1",res1)
+return res1
 }
 
 

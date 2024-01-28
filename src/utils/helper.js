@@ -1,4 +1,4 @@
-async function calculateSavingsAndRound(transactionAmountInEth) {
+export async function calculateSavingsAndRound(transactionAmountInEth) {
     const transactionAmount =  await getEthToUsd(transactionAmountInEth)
 
     // Check if the transaction amount is less than $22
