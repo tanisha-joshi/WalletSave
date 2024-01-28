@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getMyAddress, getMyBalance } from "../utils/transactionUtils";
 import { UseSelector, useSelector } from "react-redux";
 import { selectAccount, selectSavings } from "../redux/reducer";
-import withdraw from '../assets/withdraw.svg'
+import withdraw from '../assets/withdraw-money-6376.svg'
+
 import Navbar from "../Navbar";
 
 const WalletAddressDisplay = ({ address }) => {
@@ -99,28 +100,16 @@ const SavingPageInfo = () => {
               $ {balance||0} USD
             </div>
           </div>
-
-          <div className="flex mt-6 justify-center gap-6 align-middle">
+          <hr class="w-[90%] h-1 mx-3 my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+          <div className="flex  gap-6 align-middle">
             <div>
-            <svg
-              
-              xmlns="http://www.w3.org/2000/svg"
-              width="35"
-              height="35"
-              fill="currentColor"
-              class="bi bi-send"
-              viewBox="0 0 16 16"
-            >
-              {" "}
-              <path
-                d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"
-                fill="blue"
-              ></path>{" "}
-            </svg>
-            Send
+           <div className=" w-full mt-3 flex justify-start gap-x-4">
+            <div className="text-white text-3xl ">Withdraw</div>
+            <img src={withdraw} width={40} height={40}/>
+           </div>
             </div>
-            
-          </div>
+              
+          </div> 
         </div>
       )}
     </>
