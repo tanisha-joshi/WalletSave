@@ -4,7 +4,9 @@ import { UseSelector, useSelector } from "react-redux";
 import { selectAccount, selectSavings } from "../redux/reducer";
 import withdrawSvg from '../assets/withdraw-money-6376.svg'
 import { withdraw } from "../utils/transactionUtils";
+import { FaCopy } from "react-icons/fa";
 import Navbar from "../Navbar";
+
 
 const WalletAddressDisplay = ({ address }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -25,24 +27,30 @@ const WalletAddressDisplay = ({ address }) => {
   
   return (
     <div
-      style={{
-        cursor: "pointer",
-        border: "1px solid #ccc",
-        padding: "5px",
-        borderRadius: "5px",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
-        whiteSpace: "nowrap",
-        maxWidth: "200px",
-      }}
-      onClick={handleCopyClick}
-    >
-      {isCopied
-        ? "Address Copied!"
-        : `${address.substring(0, 12)}...${address.substring(
-            address.length - 8
-          )}`}
-    </div>
+    className="btn btn-sm flex rounded-full px-4 "
+    style={{
+      cursor: "pointer",
+      border:"1px solid #4e2980 ",
+      backgroundColor:"purple",
+      opacity:"0.85",
+      color:"white",
+      padding: "0 10px",
+      
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap",
+      maxWidth: "250px",
+    }}
+    onClick={handleCopyClick}
+  >
+    {isCopied
+      ? "Address Copied!"
+      : `${address.substring(0, 12)}...${address.substring(
+          address.length - 8
+        )}`}
+        {!isCopied && <FaCopy/>}
+  </div>
+
   );
 };
 const SavingPageInfo = () => {
@@ -106,10 +114,10 @@ const SavingPageInfo = () => {
 
       {!loading && (
         <div
-          style={{ background: "var(--Greyscale-Grey-80, #1C1C23)" }}
-          className="h-full w-full flex flex-col items-center "
+         
+          className="h-full w-full flex flex-col items-center  bg-[#0f0e1e] "
         >
-          <div className="p-3 rounded-lg  bg-blue-600  w-[90%] mt-6">
+          <div className="p-3 rounded-lg bg-[#9730fc]   w-[90%] mt-6">
             <div className="justify-center flex w-full">
               <WalletAddressDisplay className="" address={savingAddress} />
             </div>
@@ -117,7 +125,7 @@ const SavingPageInfo = () => {
             <div className="mt-9 font-bold  text-xl text-start tracking-wider shadow-2xl text-slate-200">
               Total Savings
             </div>
-            <div className="mt-2 text-xl tracking-wide shadow-2xl text-slate-400">
+            <div className="mt-2 text-xl tracking-wide shadow-2xl text-[whitesmoke]">
               $ {balance||0} USD
             </div>
           </div>

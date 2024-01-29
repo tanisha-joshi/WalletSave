@@ -7,7 +7,8 @@ import { selectAccount, selectSavings, SET_SAVING } from "./redux/reducer";
 import SavingsOn from "./components/SavingsOn";
 import { useNavigate } from "react-router-dom";
 import { UseDispatch } from "react-redux";
-
+import { IoSend, IoSavings } from 'react-icons/io5';
+import { FaCopy } from "react-icons/fa";
 import OIG from "./assets/OIG.jpg";
 import { getMyAddress, getMyBalance } from "./utils/transactionUtils";
 function WalletHome() {
@@ -17,8 +18,8 @@ function WalletHome() {
   const renderChat = () => {
     navigate("/sendHome");
   };
-  const isSaving= useSelector(selectSavings)
- 
+  const isSaving = useSelector(selectSavings);
+
   const WalletAddressDisplay = ({ address }) => {
     const [isCopied, setIsCopied] = useState(false);
 
@@ -38,15 +39,19 @@ function WalletHome() {
 
     return (
       <div
+        className="btn btn-sm flex rounded-full px-4 "
         style={{
           cursor: "pointer",
-          border: "1px solid #ccc",
-          padding: "5px",
-          borderRadius: "5px",
+          border:"1px solid #4e2980 ",
+          backgroundColor:"purple",
+          opacity:"0.85",
+          color:"white",
+          padding: "0 10px",
+          
           overflow: "hidden",
           textOverflow: "ellipsis",
           whiteSpace: "nowrap",
-          maxWidth: "200px",
+          maxWidth: "250px",
         }}
         onClick={handleCopyClick}
       >
@@ -55,31 +60,45 @@ function WalletHome() {
           : `${address.substring(0, 12)}...${address.substring(
               address.length - 8
             )}`}
+            {!isCopied && <FaCopy/>}
       </div>
     );
   };
 
   return (
-    <div className="w-full h-full bg-slate-900 flex flex-col items-center">
+    <div className="w-full h-full bg-[#0f0e1e] flex flex-col items-center">
       <Navbar />
-      <SavingsOn />
-      <div className="mt-8">
-        <WalletAddressDisplay className="" address={account.address} />
+      {/* <SavingsOn /> */}
+      <div
+       
+      >
+        <div className="mt-8">
+          <WalletAddressDisplay className="" address={account.address} />
+        </div>
+        <div></div>
+        <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-200">
+          {account.balance} SepoliaETH
+        </div>
+        <div className="mt-2 text-center text-xl tracking-wide shadow-2xl text-[whitesmoke]">
+          $0.00 USD
+        </div>
       </div>
-      <div></div>
-      <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-200">
-        {account.balance} SepoliaETH
+
+      <hr class="w-[90%] h-1 mx-3 my-8 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+      <div className=" flex gap-2  text-[whitesmoke] font-bold bg-[purple] py-1 px-4 rounded-full  justify-center items-center">
+        <div className="bg-black text-white btn btn-sm rounded-full" >
+          
+        Send
+        </div>
+        <div
+         onClick={()=>{navigate('/savings')}}
+        className=" bg-black btn btn-sm text-white rounded-full">
+        Savings
+        </div>
+        
       </div>
-      <div className="mt-2 text-xl tracking-wide shadow-2xl text-slate-400">
-        $0.00 USD
-      </div>
-      <div className="flex flex-row p-3 h-11 w-full mt-7">
-        <RiSendPlaneFill
-          onClick={renderChat}
-          className="text-slate-200 w-9 h-9"
-        />
-      </div>
-      <div role="tablist" className="tabs tabs-bordered mt-4 items-center">
+      
+      <div role="tablist" className="tabs tabs-bordered mt-7 items-center">
         <input
           type="radio"
           name="my_tabs_1"
