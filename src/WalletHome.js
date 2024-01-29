@@ -68,9 +68,9 @@ function WalletHome() {
   return (
     <div className="w-full h-full bg-[#0f0e1e] flex flex-col items-center">
       <Navbar />
-      {/* <SavingsOn /> */}
+      <SavingsOn />
       <div
-       
+        className=""
       >
         <div className="mt-8">
           <WalletAddressDisplay className="" address={account.address} />
@@ -86,7 +86,9 @@ function WalletHome() {
 
       <hr class="w-[90%] h-1 mx-3 my-8 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
       <div className=" flex gap-2  text-[whitesmoke] font-bold bg-[purple] py-1 px-4 rounded-full  justify-center items-center">
-        <div className="bg-black text-white btn btn-sm rounded-full" >
+        <div
+         onClick={()=>{navigate("/sendHome")}}
+        className="bg-black text-white btn btn-sm rounded-full" >
           
         Send
         </div>

@@ -14,7 +14,7 @@ function Onboard() {
 
 
   return (
-    <div className=' h-full overflow-hidden bg-cyan-900 text-white flex flex-col text-center items-center'>
+    <div className=' h-full overflow-hidden bg-[#0f0e1e] text-white flex flex-col text-center items-center'>
 
     {stage === 0 && <Home setStage={setStage} setAccount={setAccount}/>}
     {stage === 1 && <CreateWallet seedphrase={account?.seedPhrase} setStage={setStage}/>}

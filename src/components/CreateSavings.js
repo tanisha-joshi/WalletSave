@@ -5,8 +5,9 @@ import ToastSuccess from './ToastSuccess'
 import { SET_SAVING, selectAccount, selectSavings } from "../redux/reducer";
 import {  useDispatch, useSelector } from 'react-redux';
 import { getMyAddress,startSave } from "../utils/transactionUtils";
+import { useNavigate } from 'react-router-dom';
 const CreateSavings = () => {
-
+    const navigate=useNavigate()
     const [isLoading,setIsLoading] = useState()
     const dispatch=useDispatch()
     const account=useSelector(selectAccount)
@@ -28,8 +29,10 @@ const CreateSavings = () => {
             console.log(result)
          if(result)
          {
-           dispatch(SET_SAVING(true))
+           alert("account created Successfully")
+           navigate('/')
            console.log("account created successfully")
+           
            setIsLoading(false)
          }
           }
@@ -52,7 +55,7 @@ const CreateSavings = () => {
 
     
   return (
-    <div style={{background: 'var(--Greyscale-Grey-80, #1C1C23)'}} className="">
+    <div  className=" bg-[#0f0e1e]">
         <Navbar />
         <div className="">
           <img
@@ -63,11 +66,11 @@ const CreateSavings = () => {
        {
         !isLoading && 
         <div>
-       <div style={{background: 'var(--Greyscale-Grey-80, #1C1C23)'}} className="mt-5 text-center font-[patua] font-bold  w-[80%] m-[auto] text-[28px] text-[#fdfdfd]">
+       <div  className="mt-5 text-center font-[patua] font-bold  w-[80%] m-[auto] text-[28px] text-[#fdfdfd]">
           Activate Your Savings Account{" "}
         </div>
         <div className="flex">
-          <button onClick={handleCreate} className="btn mt-3 m-auto bg-[#ff6400] text-[#ffe2d0] rounded-full" >Activate</button>
+          <button onClick={handleCreate} className="btn my-3 mb-6 m-auto bg-[#ff6400] text-[#ffe2d0] rounded-full" >Activate</button>
         </div>
        </div>
        }

@@ -1,19 +1,20 @@
 import React, { useState } from 'react'
 import Navbar from './Navbar'
 import { FaEthereum } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useLocation } from 'react-router-dom';
 import { calculateSavingsAndRound } from './utils/helper';
 import { deposit, sendToken } from './utils/transactionUtils';
 import { useSelector } from 'react-redux';
 import { selectAccount, selectSavingAddress } from './redux/reducer';
-function Amount() {
 
+function Amount({senderAddress}) {
 
+    const location = useLocation()
     const navigate=useNavigate();
     const renderCancel=()=>{
     navigate('/');
   }
-  const add = "0xD7D98e76FcD14689F05e7fc19BAC465eC0fF4161"
+  const add = location.state.SenderAddress
   const account = useSelector(selectAccount)
   const savingAddress = useSelector(selectSavingAddress)
   const[ amount,setAmount] = useState(0)
@@ -53,47 +54,49 @@ console.log(tx1,tx2)
 
 
   return (
-    <div className="w-full h-full bg-slate-300 flex flex-col items-center">
+    <div className="w-full text-[whitesmoke] h-full bg-[#0f0e1e] flex flex-col items-center">
         <Navbar />
         <div className="w-full h-auto p-3 flex flex-col items-center">
-        <div className="text-xl font-bold text-slate-800">Send</div>
-        <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-slate-700 flex flex-col items-start gap-1">
-            <div className="text-sm text-cyan-800 font-bold">Account2</div>
-            <div className="text-xsm text-slate-600">0x063c849623f7113776a7D2e173A6cac2930f96c9</div>
+        <div className="text-xl font-bold">Send</div>
+        <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-white flex flex-col items-start gap-1">
+            <div className="text-sm text-cyan-300 font-bold">Account2</div>
+            <div className="text-xsm text-slate-300">{location.state.senderAddress}</div>
         </div>
         <div className="w-full flex flex-row items-center mt-2">
-            <div className=" text-cyan-800 font-semibold text-md p-4">Asset:</div>
-            <div className=" w-full bg-transparent rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-slate-700 flex flex-row items-start gap-1">
-            <FaEthereum className="w-9 h-9 text-cyan-800" />
+            <div className=" text-cyan-300 font-semibold text-md p-4">Asset:</div>
+            <div className=" w-full bg-transparent rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-white flex flex-row items-start gap-1">
+            <FaEthereum className="w-9 h-9 text-cyan-300" />
             <div className="flex flex-col">
-                <div className="text-sm text-slate-900 font-bold">ETH</div>
-                <div className="text-xsm text-slate-600">Balance: 0 ETH</div>
+                <div className="text-sm text-slate-400 font-bold">ETH</div>
+                <div className="text-xsm text-slate-300">Balance: 0 ETH</div>
             </div>
         </div>
         </div>
         <div className="w-full flex flex-row items-center mt-2">
-            <div className=" text-cyan-800 font-semibold text-md p-4">Amount:</div>
-            <div className=" w-full bg-transparent rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-slate-700 flex flex-col items-start gap-1">
+            <div className=" text-cyan-300 font-semibold text-md p-4">Amount:</div>
+            <div className=" w-full bg-transparent rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-white flex flex-col items-start gap-1">
         
-                <div className="text-sm text-slate-900 font-bold flex flex-row gap-2"><input onChange={(e)=>{
+                <div className="text-sm border-b-white text-slate-400 font-bold flex flex-row gap-2"><input 
+                 
+                onChange={(e)=>{
                     
                     setAmountInEth(e.target.value)
                     calculateAmounts(e.target.value)
-                    }} placeholder="0" className=" border-none bg-transparent w-auto focus:bg-transparent focus:outline-none"></input>ETH</div>
-                <div className="text-xsm text-slate-600">${amount} USD</div>
-                <div className="text-xsm text-slate-600">${saving} USD</div>
-                <div className="text-xsm text-slate-600">{savingInEth} ETH</div>
-                <div className="text-xsm text-slate-600">${round} USD</div>
-                <div className="text-xsm text-slate-600">{roundInEth} ETH</div>
+                    }} placeholder="0" className=" border-none  bg-transparent w-auto focus:bg-transparent focus:outline-none"></input>ETH</div>
+                <div className="text-xsm text-slate-300">${amount} USD</div>
+                <div className="text-xsm text-slate-300">${saving} USD</div>
+                <div className="text-xsm text-slate-300">{savingInEth} ETH</div>
+                <div className="text-xsm text-slate-300">${round} USD</div>
+                <div className="text-xsm text-slate-300">{roundInEth} ETH</div>
         
         </div>
         </div>
-        <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-4 pb-4 pl-2 pr-2 border-slate-700 flex flex-row items-start gap-3 justify-between">
-            <div className="text-sm text-cyan-800 font-bold flex flex-col">
-                <div className="flex flex-row gap-1"><div>Gas</div><div className="text-xsm text-slate-700 font-normal italic">(estimated)</div></div>
-                <div className="text-slate-800">Likely in {'<'} 30s</div>
+        <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-4 pb-4 pl-2 pr-2 border-bg-[#0f0e1e] flex flex-row items-start gap-3 justify-between">
+            <div className="text-sm text-cyan-300 font-bold flex flex-col">
+                <div className="flex flex-row gap-1"><div>Gas</div><div className="text-xsm text-slate-300 font-normal italic">(estimated)</div></div>
+                <div className="text-slate-400">Likely in {'<'} 30s</div>
             </div>
-            <div className="text-xsm text-slate-600 flex flex-col">
+            <div className="text-xsm text-slate-300 flex flex-col">
                 <div>0.00000415 ETH</div>
                 <div>Max fee: 0.00054371 ETH</div>
 
