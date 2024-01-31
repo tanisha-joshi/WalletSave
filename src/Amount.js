@@ -84,10 +84,29 @@ console.log(tx1,tx2)
                     calculateAmounts(e.target.value)
                     }} placeholder="0" className=" border-none  bg-transparent w-auto focus:bg-transparent focus:outline-none"></input>ETH</div>
                 <div className="text-xsm text-slate-300">${amount} USD</div>
+                <div className='flex items-center justify-between w-full'>
+                    <div className="text-xsm text-slate-300">Saving(USD): </div>
+
                 <div className="text-xsm text-slate-300">${saving} USD</div>
+                </div>
+                <div className='flex items-center justify-between w-full'>
+                <div className="text-xsm text-slate-300">Saving(ETH): </div>
+
+
                 <div className="text-xsm text-slate-300">{savingInEth} ETH</div>
+                </div>
+
+                <div className='flex items-center justify-between w-full'>
+                <div className="text-xsm text-slate-300">Total(USD): </div>
+
                 <div className="text-xsm text-slate-300">${round} USD</div>
+                </div>
+
+                <div className='flex items-center justify-between w-full'>
+                <div className="text-xsm text-slate-300">Total(ETH): </div>
+
                 <div className="text-xsm text-slate-300">{roundInEth} ETH</div>
+                </div>
         
         </div>
         </div>
