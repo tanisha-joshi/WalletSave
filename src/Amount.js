@@ -136,11 +136,12 @@ const sendTransactions = async()=>{
 
             </div>
         </div>
-        <div className="divider mt-16 "></div>
-        <div className="flex flex-row justify-between gap-3">
+        <div className="divider mt-3 "></div>
+        <div className=" flex flex-row justify-between gap-3">
             <button className="btn w-40 btn-primary bg-slate-950 text-white border-none rounded-l-full rounded-r-full " onClick={renderCancel}>Cancel</button>
-            <button className="btn w-40 btn-primary bg-transparent  border-slate-900 border-2 text-slate-900 rounded-l-full rounded-r-full " onClick={sendTransactions}>Next</button>
+            <button className="btn w-40 btn-primary  border-slate-900 border-2 text-slate-900 rounded-l-full rounded-r-full " onClick={sendTransactions}>Next</button>
         </div>
+        
         </div>
     </div>
   )
