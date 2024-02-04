@@ -6,6 +6,7 @@ import withdrawSvg from '../assets/withdraw-money-6376.svg'
 import { withdraw } from "../utils/transactionUtils";
 import { FaCopy } from "react-icons/fa";
 import Navbar from "../Navbar";
+import { ToastContainer, toast } from "react-toastify";
 
 
 const WalletAddressDisplay = ({ address }) => {
@@ -69,8 +70,15 @@ const SavingPageInfo = () => {
 
       withdraw(account.privateKey,withdrawBalance).then((result)=>{
         
-        console.log("Amount Withdrawn Successfully",result)
+        console.log(result.reason)
+        const lowerCaseResult = result.name.toLowerCase();
         
+        // Check if the lowercased string contains the lowercased word
+        if( lowerCaseResult.includes("error"))
+        {
+          toast.error(`${result.reason}`)
+          setLoading(false)
+        }
         setLoading(false)
         setWithdrawLoading(false)
       }).catch((error)=>{
@@ -99,6 +107,7 @@ const SavingPageInfo = () => {
   return (
     <>
       <Navbar />
+      <ToastContainer position="top-left"/>
       {loading && (
         <div
           style={{ background: "var(--Greyscale-Grey-80, #1C1C23)" }}
@@ -126,7 +135,7 @@ const SavingPageInfo = () => {
               Total Savings
             </div>
             <div className="mt-2 text-xl tracking-wide shadow-2xl text-[whitesmoke]">
-              $ {balance||0} USD
+              $ {balance} USD
             </div>
           </div>
           <hr class="w-[90%] h-1 mx-3 my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>

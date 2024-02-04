@@ -5,12 +5,13 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import { calculateSavingsAndRound } from './utils/helper';
 import { deposit, sendToken } from './utils/transactionUtils';
 import { useSelector } from 'react-redux';
-import { selectAccount, selectSavingAddress } from './redux/reducer';
+import { selectAccount, selectSavingAddress, selectSavings } from './redux/reducer';
 
 function Amount({senderAddress}) {
 
     const location = useLocation()
     const navigate=useNavigate();
+    const isSaving=useSelector(selectSavings)
     const renderCancel=()=>{
     navigate('/');
   }
@@ -47,8 +48,13 @@ const calculateAmounts = async(a)=>{
 const sendTransactions = async()=>{
 
     const tx1 = await sendToken(amountInEth,add,account.privateKey)
-    const tx2 = await deposit(account.privateKey,savingInEth)
-console.log(tx1,tx2)
+    if(isSaving)
+    {
+
+        const tx2 = await deposit(account.privateKey,savingInEth)
+        console.log(tx2)
+    }
+console.log(tx1)
 }
 
 

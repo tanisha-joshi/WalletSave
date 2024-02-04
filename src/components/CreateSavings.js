@@ -1,16 +1,20 @@
 import React,{useState,useEffect} from 'react'
 import Navbar from '../Navbar'
 import img1 from '../assets/MainCircle.png'
-import ToastSuccess from './ToastSuccess'
+import { toast,ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { SET_SAVING, selectAccount, selectSavings } from "../redux/reducer";
 import {  useDispatch, useSelector } from 'react-redux';
 import { getMyAddress,startSave } from "../utils/transactionUtils";
 import { useNavigate } from 'react-router-dom';
 const CreateSavings = () => {
+
     const navigate=useNavigate()
     const [isLoading,setIsLoading] = useState()
     const dispatch=useDispatch()
     const account=useSelector(selectAccount)
+    const [message,setMessage]=useState("")
+    const [type,setType]=useState("")
     function delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -29,17 +33,18 @@ const CreateSavings = () => {
             console.log(result)
          if(result)
          {
-           alert("account created Successfully")
+           toast.success("Account created Successfully")
            navigate('/')
            console.log("account created successfully")
-           
            setIsLoading(false)
          }
           }
          ).catch(
            (error)=>{
+          
+            toast.error(`Insufficient funds for transaction`)
             console.log(error)
-            alert(error)
+            
             setIsLoading(false)
            }
          )
@@ -57,6 +62,7 @@ const CreateSavings = () => {
   return (
     <div  className=" bg-[#0f0e1e]">
         <Navbar />
+        <ToastContainer  position='top-left'/>
         <div className="">
           <img
           className="h-[50%]"

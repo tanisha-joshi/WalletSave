@@ -17,7 +17,7 @@ function Navbar() {
             </div>
             <div className='flex w-[50%] align-middle gap-2  justify-center items-center'>
             <BiSolidUserAccount className=" w-6 h-6"/>
-            <div className="text-slate-300 font-bold text-xl ">Account1</div>
+            <div onClick={()=>{navigate('/')}} className="text-slate-300 font-bold text-xl ">Account1</div>
             </div>
             <div className='text-slate-300 font-bold text-md  w-[24%]'>
              <button onClick={()=>{navigate('/savings')}} className='btn btn-sm  text-[#edecf0] bg-[#4e2980]'>Savings</button>

@@ -13,6 +13,7 @@ import OIG from "./assets/OIG.jpg";
 import { getMyAddress, getMyBalance } from "./utils/transactionUtils";
 function WalletHome() {
   const account = useSelector(selectAccount);
+  console.log(account)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const renderChat = () => {
