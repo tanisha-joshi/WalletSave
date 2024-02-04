@@ -6,6 +6,7 @@ import { calculateSavingsAndRound } from './utils/helper';
 import { deposit, sendToken } from './utils/transactionUtils';
 import { useSelector } from 'react-redux';
 import { selectAccount, selectSavingAddress, selectSavings } from './redux/reducer';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Amount({senderAddress}) {
 
@@ -46,15 +47,22 @@ const calculateAmounts = async(a)=>{
 }
 
 const sendTransactions = async()=>{
-
+     let tx2
     const tx1 = await sendToken(amountInEth,add,account.privateKey)
+    console.log("tx1",tx1.info)
+    console.log("isSaving",isSaving)
     if(isSaving)
     {
-
-        const tx2 = await deposit(account.privateKey,savingInEth)
-        console.log(tx2)
+         tx2 = await deposit(account.privateKey,savingInEth)
+        console.log("tx2",tx2)
     }
-console.log(tx1)
+
+    if(tx1.info.error || tx2.info.error)
+    {
+        toast.error(`${tx1.info.error.message}`)
+       
+    }
+   
 }
 
 
@@ -62,6 +70,7 @@ console.log(tx1)
   return (
     <div className="w-full text-[whitesmoke] h-full bg-[#0f0e1e] flex flex-col items-center">
         <Navbar />
+        <ToastContainer position='top-left'/>
         <div className="w-full h-auto p-3 flex flex-col items-center">
         <div className="text-xl font-bold">Send</div>
         <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-3 pb-3 pl-2 pr-2 border-white flex flex-col items-start gap-1">

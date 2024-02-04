@@ -10,6 +10,7 @@ export async function sendToken(
   privateKey,
 ) {
 
+ try {
   const chain = CHAINS_CONFIG[Pegasus.chainId];
 
 
@@ -32,6 +33,10 @@ export async function sendToken(
   const receipt = await transaction.wait();
 
   return {transaction, receipt};
+ } catch (error) {
+   console.log(error)
+   return error
+ }
 }
 
 
@@ -84,9 +89,10 @@ export async function deposit(privateKey,amount){
 
     // Wait for the transaction to be mined
     const receipt = await tx.wait();
-
+    return receipt
     console.log('Transaction Receipt:', receipt);
   } catch (error) {
+    return error
     console.error('Error depositing to account:', error);
   }
 
