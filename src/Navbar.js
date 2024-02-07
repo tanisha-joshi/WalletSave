@@ -15,6 +15,7 @@ function Navbar() {
                         <li><a>Sepolia</a></li>
                     </ul>
             </div> */}
+            <div className='text-white font-semibold m-2 bg-[#4e2980] rounded-lg p-1'>Pegasus</div>
             <div className='flex w-[50%] align-middle gap-2  justify-center items-center'>
             <BiSolidUserAccount className=" w-6 h-6"/>
             <div onClick={()=>{navigate('/')}} className="text-slate-300 font-bold text-xl ">Account1</div>
