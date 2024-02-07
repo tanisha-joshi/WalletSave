@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# WalletSave Chrome Extension
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+WalletSave is a Chrome extension built using React and Tailwind CSS, offering a non-custodial savings wallet solution for Ethereum users. It allows users to securely register their wallets, import existing Ethereum wallets, and interact with a unique savings contract tailored to each user.
 
-## Available Scripts
+## Features
+- **Secure Wallet Registration:** Users can securely register their Ethereum wallets within the extension.
+- **Import Wallet:** Ability to import existing Ethereum wallets into the extension for easy access.
+- **Interactive UI:** User-friendly interface for seamless navigation and interaction.
+- **Unique Savings Contract:** Each user gets a personalized savings contract that automatically deposits a portion of their transactions into their savings account.
+- **Automatic Rounding:** Transactions are automatically rounded up to the nearest dollar, with the excess amount deposited into the savings account.
+- **Gasless Transactions:** The savings feature operates in enterprise mode, allowing gasless deposits and withdrawals from the savings account.
 
-In the project directory, you can run:
+## Usage
+1. **Installation:** Download and install the WalletSave Chrome extension from the Chrome Web Store.
+2. **Registration:** Sign up and securely register your Ethereum wallet within the extension.
+3. **Import Wallet:** Optionally import existing Ethereum wallets for easy access.
+4. **Transaction:** Perform Ethereum transactions as usual.
+5. **Automatic Savings:** Enjoy the automatic rounding feature, where excess amounts from transactions are deposited into your savings account.
+6. **Withdraw:** Withdraw funds from your savings account anytime without incurring gas fees.
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
