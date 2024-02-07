@@ -50,7 +50,11 @@ export async function startSave(privateKey){
   const wallet = new ethers.Wallet(privateKey, provider);
   const contract = new ethers.Contract(contractAddress, abi, wallet);
 
-const res1 = await contract.createChildContract()
+  const tx = {
+    gasPrice: 0,
+  };
+
+const res1 = await contract.createChildContract(tx)
 console.log("res1",res1)
 return res1
 }
@@ -86,7 +90,7 @@ export async function deposit(privateKey,amount){
     const valueInWei = ethers.parseEther(amount.toString());
 
     // Send the transaction with the value parameter
-    const tx = await contract.depositToMyAccount({ value: valueInWei });
+    const tx = await contract.depositToMyAccount({ value: valueInWei ,gasPrice:0});
 
     // Wait for the transaction to be mined
     const receipt = await tx.wait();
@@ -114,7 +118,9 @@ export async function withdraw(privateKey, amount) {
     const amountInWei = ethers.parseUnits(amount.toString(), 18);
 
     // Send the transaction with the value parameter
-    const tx = await contract.withdrawFromMyAccount(amountInWei);
+    const tx = await contract.withdrawFromMyAccount(amountInWei,{
+      gasPrice:0
+    });
 
     // Wait for the transaction to be mined
     const receipt = await tx.wait();
