@@ -125,7 +125,7 @@ const sendTransactions = async()=>{
         
         </div>
         </div>
-        <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-4 pb-4 pl-2 pr-2 border-bg-[#0f0e1e] flex flex-row items-start gap-3 justify-between">
+        {/* <div className=" w-full ml-2 mr-2 bg-transparent mt-2 rounded-lg  border-2 pt-4 pb-4 pl-2 pr-2 border-bg-[#0f0e1e] flex flex-row items-start gap-3 justify-between">
             <div className="text-sm text-cyan-300 font-bold flex flex-col">
                 <div className="flex flex-row gap-1"><div>Gas</div><div className="text-xsm text-slate-300 font-normal italic">(estimated)</div></div>
                 <div className="text-slate-400">Likely in {'<'} 30s</div>
@@ -135,7 +135,7 @@ const sendTransactions = async()=>{
                 <div>Max fee: 0.00054371 ETH</div>
 
             </div>
-        </div>
+        </div> */}
         <div className="divider mt-3 "></div>
         <div className=" flex flex-row justify-between gap-3">
             <button className="btn w-40 btn-primary bg-slate-950 text-white border-none rounded-l-full rounded-r-full " onClick={renderCancel}>Cancel</button>
