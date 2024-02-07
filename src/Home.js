@@ -12,20 +12,29 @@ function Home({setStage,setAccount}) {
   const [seedphrase, setSeedphrase] = useState('');
 
   const create = ()=>{
-    const keys = generateAccount()
-    console.log(keys)
-    setAccount(keys)
-    setStage(1)
+     generateAccount().then(
+      v=>
+{
+  setAccount(v)
+  setStage(1)
+}
+     )
+
+
     // localStorage.setItem("phrase",keys.seedPhrase)
     // dispatch(SET_ACCOUNT(keys))
   }
   
   const importWallet = ()=>{
   
-    const keys = generateAccount(seedphrase)
-    console.log(keys)
-    localStorage.setItem("phrase",seedphrase)
-    dispatch(SET_ACCOUNT(keys))
+    generateAccount(seedphrase).then(
+      (v)=>
+      {
+        localStorage.setItem("phrase",seedphrase)
+        dispatch(SET_ACCOUNT(v))
+      }
+    )
+    
 
 
   }
