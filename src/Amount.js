@@ -16,7 +16,7 @@ function Amount({senderAddress}) {
     const renderCancel=()=>{
     navigate('/');
   }
-  const add = location.state.SenderAddress
+  const add = location.state.senderAddress
   const account = useSelector(selectAccount)
   const savingAddress = useSelector(selectSavingAddress)
   const[ amount,setAmount] = useState(0)
@@ -57,11 +57,11 @@ const sendTransactions = async()=>{
         console.log("tx2",tx2)
     }
 
-    if(tx1.info.error || tx2.info.error)
-    {
-        toast.error(`${tx1.info.error.message}`)
+    // if(tx1.info.error || tx2.info.error)
+    // {
+    //     toast.error(`${tx1.info.error.message}`)
        
-    }
+    // }
    
 }
 
@@ -83,7 +83,7 @@ const sendTransactions = async()=>{
             <FaEthereum className="w-9 h-9 text-cyan-300" />
             <div className="flex flex-col">
                 <div className="text-sm text-slate-400 font-bold">ETH</div>
-                <div className="text-xsm text-slate-300">Balance: 0 ETH</div>
+                <div className="text-xsm text-slate-300">Balance: {account.balance}ETH</div>
             </div>
         </div>
         </div>
@@ -99,29 +99,29 @@ const sendTransactions = async()=>{
                     calculateAmounts(e.target.value)
                     }} placeholder="0" className=" border-none  bg-transparent w-auto focus:bg-transparent focus:outline-none"></input>ETH</div>
                 <div className="text-xsm text-slate-300">${amount} USD</div>
-                <div className='flex items-center justify-between w-full'>
+{ isSaving &&               <div className='flex items-center justify-between w-full'>
                     <div className="text-xsm text-slate-300">Saving(USD): </div>
 
                 <div className="text-xsm text-slate-300">${saving} USD</div>
-                </div>
-                <div className='flex items-center justify-between w-full'>
+                </div>}
+{  isSaving &&              <div className='flex items-center justify-between w-full'>
                 <div className="text-xsm text-slate-300">Saving(ETH): </div>
 
 
                 <div className="text-xsm text-slate-300">{savingInEth} ETH</div>
                 </div>
-
-                <div className='flex items-center justify-between w-full'>
+}
+{ isSaving &&               <div className='flex items-center justify-between w-full'>
                 <div className="text-xsm text-slate-300">Total(USD): </div>
 
                 <div className="text-xsm text-slate-300">${round} USD</div>
-                </div>
+                </div>}
 
-                <div className='flex items-center justify-between w-full'>
+{ isSaving &&               <div className='flex items-center justify-between w-full'>
                 <div className="text-xsm text-slate-300">Total(ETH): </div>
 
                 <div className="text-xsm text-slate-300">{roundInEth} ETH</div>
-                </div>
+                </div>}
         
         </div>
         </div>

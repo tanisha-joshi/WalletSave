@@ -38,8 +38,12 @@ function App() {
     ()=>{
       const phrase =  localStorage.getItem("phrase")
       if(phrase){
-        const keys = generateAccount(phrase)
-        dispatch(SET_ACCOUNT(keys))
+        generateAccount(phrase).then(
+          v=>{
+            dispatch(SET_ACCOUNT(v))
+          }
+        )
+       
       } 
 
     },[]

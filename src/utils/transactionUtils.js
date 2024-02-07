@@ -10,6 +10,7 @@ export async function sendToken(
   privateKey,
 ) {
 
+  console.log("sending to.... ",to)
  try {
   const chain = CHAINS_CONFIG[Pegasus.chainId];
 
@@ -143,6 +144,26 @@ export async function getMyBalance(privateKey){
 const res2 = await contract.getMyBalance()
 
 console.log("res2",res2)
+return res2
+
+}
+
+
+export async function getWalletBalance(privateKey){
+  const chain = CHAINS_CONFIG[Pegasus.chainId];
+
+  // Create a provider using the Infura RPC URL for Goerli
+  const provider = new ethers.JsonRpcProvider(chain.rpcUrl);
+  const wallet = new ethers.Wallet(privateKey, provider);
+
+ 
+
+
+
+
+const res2 = await wallet.getBalance()
+
+console.log("wallet Balance",res2)
 return res2
 
 }

@@ -69,16 +69,17 @@ const SavingPageInfo = () => {
     if(withdrawBalance){
 
       withdraw(account.privateKey,withdrawBalance).then((result)=>{
+        // console.log(result)
         
-        console.log(result.reason)
-        const lowerCaseResult = result.name.toLowerCase();
+        // console.log(result.reason)
+        // const lowerCaseResult = result.name.toLowerCase();
         
-        // Check if the lowercased string contains the lowercased word
-        if( lowerCaseResult.includes("error"))
-        {
-          toast.error(`${result.reason}`)
-          setLoading(false)
-        }
+        // // Check if the lowercased string contains the lowercased word
+        // if( lowerCaseResult.includes("error"))
+        // {
+        //   toast.error(`${result.reason}`)
+        //   setLoading(false)
+        // }
         setLoading(false)
         setWithdrawLoading(false)
       }).catch((error)=>{
@@ -95,9 +96,12 @@ const SavingPageInfo = () => {
       const saving = await getMyAddress(account.privateKey);
       if (isSaving && saving ) {
         const savingsBalance = await getMyBalance(account.privateKey);
-        console.log("account",savingsBalance)
+        
+const etherValue = parseFloat(savingsBalance) / 1e18;
+
+        console.log("account",etherValue)
         setSavingAddress(saving)
-        setBalance(savingsBalance)
+        setBalance(etherValue)
         setLoading(false) 
       }
       
@@ -135,7 +139,7 @@ const SavingPageInfo = () => {
               Total Savings
             </div>
             <div className="mt-2 text-xl tracking-wide shadow-2xl text-[whitesmoke]">
-              $ {balance} USD
+               {balance} ETH
             </div>
           </div>
           <hr class="w-[90%] h-1 mx-3 my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>

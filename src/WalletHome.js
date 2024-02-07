@@ -77,12 +77,12 @@ function WalletHome() {
           <WalletAddressDisplay className="" address={account.address} />
         </div>
         <div></div>
-        <div className="mt-3 text-3xl tracking-wider shadow-2xl text-slate-200">
-          {account.balance} SepoliaETH
+        <div className="mt-3 text-3xl tracking-wider text-center shadow-2xl text-slate-200">
+          {account.balance} ETH
         </div>
-        <div className="mt-2 text-center text-xl tracking-wide shadow-2xl text-[whitesmoke]">
+        {/* <div className="mt-2 text-center text-xl tracking-wide shadow-2xl text-[whitesmoke]">
           $0.00 USD
-        </div>
+        </div> */}
       </div>
 
       <hr class="w-[90%] h-1 mx-3 my-8 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
